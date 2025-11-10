@@ -1,17 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@section('content')
+<div class="container py-5">
+    <h2>Üdvözöllek a kezelőpulton, {{ Auth::user()->name }}!</h2>
+    <ul class="list-group mt-4">
+        <li class="list-group-item">Felhasználói név: {{ Auth::user()->name }}</li>
+        <li class="list-group-item">Email cím: {{ Auth::user()->email }}</li>
+        <li class="list-group-item">Regisztráció dátuma: {{ Auth::user()->created_at->format('Y-m-d H:i:s') }}</li>
+        <li class="list-group-item">Jogosultság: {{ Auth::user()->role }}</li>
+    </ul>
+
+</div>
+@endsection

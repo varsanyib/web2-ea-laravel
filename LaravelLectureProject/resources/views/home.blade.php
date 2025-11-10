@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Kezdőlap')
-
 @section('content')
-<div class="text-center">
-    <h1>Üdvözöl a Laravel weboldal!</h1>
-    <p class="lead">Ez egy reszponzív Bootstrap 5 sablonra épülő oldal.</p>
+<div class="container py-5">
+    <h1>Üdvözöllek az oldalon!</h1>
+    <p>Dynamic Layout Laravel teszt</p>
 </div>
 @endsection

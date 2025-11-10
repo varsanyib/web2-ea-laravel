@@ -1,36 +1,52 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ config('app.name') }}</title>
+	<meta name="description" content="SolMusic HTML Template">
+	<meta name="keywords" content="music, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Favicon -->
+	<link href="{{ asset('img/favicon.ico') }}" rel="shortcut icon"/>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+ 
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}"/>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+    <header class="header-section clearfix">
+        @include('partials.navbar')
+    </header>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+    <main class="container">
+        @yield('content')
+    </main>
+
+    <footer class="footer-section text-center mt-5 text-muted">
+        @include('partials.footer')
+    </footer>
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+	<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+	<script src="{{ asset('js/mixitup.min.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
+</body>
 </html>
