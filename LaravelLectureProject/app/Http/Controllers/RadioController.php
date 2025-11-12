@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Radio;
 use Illuminate\Http\Request;
+use App\Models\Town;
 
 class RadioController extends Controller
 {
@@ -15,18 +16,20 @@ class RadioController extends Controller
 
     public function create()
     {
-        return view('radios.create');
+        $towns = Town::all(); 
+        return view('radios.create', compact('towns'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'town_name' => 'required|string|exists:towns,name',
+            'name' => 'required|string|max:255',
             'frequency' => 'required|numeric',
             'power' => 'nullable|numeric',
-            'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
         ]);
+
 
         Radio::create($request->only(['town_name', 'frequency', 'power', 'name', 'address']));
 
@@ -40,7 +43,8 @@ class RadioController extends Controller
 
     public function edit(Radio $radio)
     {
-        return view('radios.edit', compact('radio'));
+        $towns = Town::all();
+        return view('radios.edit', compact('radio', 'towns'));
     }
 
     public function update(Request $request, Radio $radio)

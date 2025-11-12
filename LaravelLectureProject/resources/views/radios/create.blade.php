@@ -12,7 +12,14 @@
         </div>
         <div>
             <label>Település neve:</label>
-            <input type="text" name="town_name" value="{{ old('town_name') }}" required>
+            <select name="town_name" required>
+                <option value="">-- Válasszon települést --</option>
+                @foreach ($towns as $town)
+                    <option value="{{ $town->name }}" {{ old('town_name') == $town->name ? 'selected' : '' }}>
+                        {{ $town->name }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         <div>
             <label>Frekvencia:</label>
