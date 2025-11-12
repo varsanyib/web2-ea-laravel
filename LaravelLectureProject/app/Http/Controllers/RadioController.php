@@ -13,7 +13,8 @@ class RadioController extends Controller
      */
     public function index()
     {
-        //
+        $radios = \App\Models\Radio::with('region')->latest()->paginate(20);
+        return view('radios.index', compact('radios'));
     }
 
     /**
