@@ -7,6 +7,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DiagramController;
 use App\Http\Controllers\RadioController;
 use App\Http\Controllers\CountyController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::delete('radios', [RadioController::class, 'destroy'])->name('radios.destroy');
     Route::get('/admin', function () { return view('admin.index'); })->name('admin.home');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
 
 require __DIR__.'/auth.php';
