@@ -30,10 +30,11 @@ class RadioController extends Controller
         return redirect()->route('radios.index');
     }
 
-    public function show($id)
+    public function show(\App\Models\Radio $radio)
     {
-        //
+        return view('radios.show', compact('radio'));
     }
+
 
     public function edit(\App\Models\Radio $radio)
     {
