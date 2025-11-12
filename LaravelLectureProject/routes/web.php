@@ -40,7 +40,7 @@ Route::get('/diagram', [DiagramController::class, 'index'])->name('diagram');
 
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::resource('radios', RadioController::class);
-    Route::get('/admin', function () { return 'Admin OK'; })->name('admin.home');
+    Route::get('/admin', function () { return view('admin.index'); })->name('admin.home');
 });
 
 require __DIR__.'/auth.php';
