@@ -2,13 +2,49 @@
 
 @section('content')
 <div class="container py-5">
-    <h2>Üdvözöllek a kezelőpulton, {{ Auth::user()->name }}!</h2>
-    <ul class="list-group mt-4">
-        <li class="list-group-item">Felhasználói név: {{ Auth::user()->name }}</li>
-        <li class="list-group-item">Email cím: {{ Auth::user()->email }}</li>
-        <li class="list-group-item">Regisztráció dátuma: {{ Auth::user()->created_at->format('Y-m-d H:i:s') }}</li>
-        <li class="list-group-item">Jogosultság: {{ Auth::user()->role }}</li>
-    </ul>
+    <!-- Üdvözlő szakasz -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="p-4 text-white rounded shadow text-center" style="background-color: #08192d;">
+                <h2 class="mb-2">Üdvözöllek, {{ Auth::user()->name }}!</h2>
+                <p class="mb-0">Itt áttekintheted a fiókod adatait.</p>
+            </div>
+        </div>
+    </div>
 
+    <div class="row g-4 mb-5">
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Felhasználói név</h6>
+                    <h5 class="card-title">{{ Auth::user()->name }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Email cím</h6>
+                    <h5 class="card-title">{{ Auth::user()->email }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Regisztráció dátuma</h6>
+                    <h5 class="card-title">{{ Auth::user()->created_at->format('Y-m-d H:i:s') }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card text-center shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Jogosultság</h6>
+                    <h5 class="card-title">{{ Auth::user()->role }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
