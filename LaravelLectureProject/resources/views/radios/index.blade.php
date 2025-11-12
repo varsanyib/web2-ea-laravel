@@ -15,7 +15,14 @@
                 <td><a href="{{ route('radios.show',$r) }}">{{ $r->name }}</a></td>
                 <td>{{ $r->region->name }}</td>
                 <td>{{ $r->frequency }}</td>
-                <td><a href="{{ route('radios.edit',$r) }}">Edit</a></td>
+                <td>
+                    <a href="{{ route('radios.edit',$r) }}">Edit</a>
+                    <form method="post" action="{{ route('radios.destroy',$r) }}" style="display:inline" onsubmit="return confirm('Delete?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </tbody>

@@ -52,8 +52,10 @@ class RadioController extends Controller
         return redirect()->route('radios.index');
     }
 
-    public function destroy($id)
-    {
-        //
-    }
+public function destroy(\App\Models\Radio $radio)
+{
+    $radio->delete();
+    return redirect()->route('radios.index');
+}
+
 }
