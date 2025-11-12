@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
 });
 
@@ -51,7 +52,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth','role:admin'])->group(function () {
-    Route::delete('radios', [RadioController::class, 'destroy'])->name('radios.destroy');
+    Route::delete('radios/{radio}', [RadioController::class, 'destroy'])->name('radios.destroy');
     Route::get('/admin', function () { return view('admin.index'); })->name('admin.home');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });

@@ -15,7 +15,7 @@
     <li><a href="{{ route('home') }}">Kezdőlap</a></li>
     <li><a href="{{ route('diagram') }}">Adatok</a></li>
     @auth
-        <li><a href="{{ route('dashboard') }}">Fiók</a></li>
+        <li><a href="{{ route('dashboard') }}">Profil</a></li>
         <li><a href="{{ route('messages.index') }}">Üzenetek</a></li>
         <li><a href="{{ route('radios.index') }}">Rádiók</a></li>
         @if(auth()->user()->role === 'admin')

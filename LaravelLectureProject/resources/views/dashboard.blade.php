@@ -46,5 +46,10 @@
             </div>
         </div>
     </div>
+    <div class="row mb-5">
+        <div class="col-8 mx-auto">
+            <a href="{{ route('profile.edit') }}" class="btn p-4 w-100 rounded text-white font-weight-bold" style="background-color: #08192d;">Profil adatainak módosítása</a>
+        </div>
+    </div>
 </div>
 @endsection
