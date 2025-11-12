@@ -17,12 +17,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Admin', 'password' => Hash::make('password'), 'role' => 'admin']
         );
 
-        if (Region::count() === 0) {
-            $regions = collect(['North','South','East','West'])->map(fn($n) => Region::create(['name'=>$n]));
-            foreach ($regions as $reg) {
-                Radio::create(['region_id'=>$reg->id,'name'=>$reg->name.' FM','frequency'=>'101.1']);
-                Radio::create(['region_id'=>$reg->id,'name'=>$reg->name.' AM','frequency'=>'720']);
-            }
-        }
+        
     }
 }
