@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Radio extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'town_name',
         'frequency',

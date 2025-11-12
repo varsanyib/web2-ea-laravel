@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Admin', 'password' => Hash::make('password'), 'role' => 'admin']
         );
 
-        
+        $this->call([
+            CountySeeder::class,
+            TownSeeder::class,
+            RadioSeeder::class,
+        ]);
     }
 }

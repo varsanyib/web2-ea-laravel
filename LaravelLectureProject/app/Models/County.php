@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class County extends Model
 {
-    protected $table = 'counties';
-    
-    // Ha a primary key nem integer
-    protected $primaryKey = 'name';
-    public $incrementing = false; // mivel string
-    protected $keyType = 'string';
+    use HasFactory;
 
-    protected $fillable = ['name', 'region'];
+    protected $fillable = [
+        'name',
+        'region',
+    ];
+
+    public function towns()
+    {
+        return $this->hasMany(\App\Models\Town::class, 'name');
+    }
 }
