@@ -17,9 +17,9 @@
     @auth
         <li><a href="{{ route('dashboard') }}">Fiók</a></li>
         <li><a href="{{ route('messages.index') }}">Üzenetek</a></li>
+        <li><a href="{{ route('radios.index') }}">Rádiók</a></li>
         @if(auth()->user()->role === 'admin')
-            <li><a href="{{ route('admin.home') }}">Admin</a></li>
-            <li><a href="{{ route('radios.index') }}">Rádiók kezelése</a></li>
+            <li><a href="{{ route('admin.home') }}">Adminisztráció</a></li>
         @endif
         <li><a href="{{ route('contact') }}">Kapcsolat</a></li>
         <li>

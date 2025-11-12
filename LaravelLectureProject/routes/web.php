@@ -39,8 +39,18 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 
 Route::get('/diagram', [DiagramController::class, 'index'])->name('diagram');
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/radios', [RadioController::class, 'index'])->name('radios.index');
+    Route::get('/radios/create', [RadioController::class, 'create'])->name('radios.create');
+    Route::post('/radios', [RadioController::class, 'store'])->name('radios.store');
+    Route::get('/radios/{radio}', [RadioController::class, 'show'])->name('radios.show');
+    Route::get('/radios/{radio}/edit', [RadioController::class, 'edit'])->name('radios.edit');
+    Route::put('/radios/{radio}', [RadioController::class, 'update'])->name('radios.update');
+});
+
 Route::middleware(['auth','role:admin'])->group(function () {
-    Route::resource('radios', RadioController::class);
+    Route::delete('radios', [RadioController::class, 'destroy'])->name('radios.destroy');
     Route::get('/admin', function () { return view('admin.index'); })->name('admin.home');
 });
 
