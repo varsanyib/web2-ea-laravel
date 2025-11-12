@@ -1,31 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ route('radios.create') }}">New radio</a>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th><th>Name</th><th>Region</th><th>Frequency</th><th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($radios as $r)
+<h1>Rádióadók</h1>
+    <a href="{{ route('radios.create') }}">Új rádióadó hozzáadása</a>
+
+    <table border="1" cellpadding="5">
+        <thead>
             <tr>
-                <td>{{ $r->id }}</td>
-                <td><a href="{{ route('radios.show',$r) }}">{{ $r->name }}</a></td>
-                <td>{{ $r->region->name }}</td>
-                <td>{{ $r->frequency }}</td>
-                <td>
-                    <a href="{{ route('radios.edit',$r) }}">Edit</a>
-                    <form method="post" action="{{ route('radios.destroy',$r) }}" style="display:inline" onsubmit="return confirm('Delete?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
+                <th>Név</th>
+                <th>Település</th>
+                <th>Frekvencia</th>
+                <th>Teljesítmény</th>
+                <th>Cím</th>
+                <th>Műveletek</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
-{{ $radios->links() }}
+        </thead>
+        <tbody>
+            @foreach ($radios as $radio)
+                <tr>
+                    <td>{{ $radio->name }}</td>
+                    <td>{{ $radio->town_name }}</td>
+                    <td>{{ $radio->frequency }} Mhz</td>
+                    <td>{{ $radio->power ?? '-' }} kW</td>
+                    <td>{{ $radio->address ?? '-' }}</td>
+                    <td>
+                        <a href="{{ route('radios.show', $radio) }}">Megjelenítés</a> |
+                        <a href="{{ route('radios.edit', $radio) }}">Szerkesztés</a> |
+                        <form action="{{ route('radios.destroy', $radio) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Biztos benne, hogy törölni akarja?')">Törlés</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection

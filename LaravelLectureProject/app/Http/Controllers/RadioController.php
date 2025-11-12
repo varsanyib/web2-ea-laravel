@@ -2,61 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Radio;
 use Illuminate\Http\Request;
 
 class RadioController extends Controller
 {
-
     public function index()
     {
-        $radios = \App\Models\Radio::with('region')->latest()->paginate(20);
+        $radios = Radio::all();
         return view('radios.index', compact('radios'));
     }
 
     public function create()
     {
-        $regions = \App\Models\Region::orderBy('name')->get();
-        return view('radios.create', compact('regions'));
+        return view('radios.create');
     }
 
-    public function store(\Illuminate\Http\Request $request)
+    public function store(Request $request)
     {
-        $data = $request->validate([
-            'region_id' => 'required|exists:regions,id',
+        $request->validate([
+            'town_name' => 'required|string|exists:towns,name',
+            'frequency' => 'required|numeric',
+            'power' => 'nullable|numeric',
             'name' => 'required|string|max:255',
-            'frequency' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
         ]);
-        \App\Models\Radio::create($data);
-        return redirect()->route('radios.index');
+
+        Radio::create($request->only(['town_name', 'frequency', 'power', 'name', 'address']));
+
+        return redirect()->route('radios.index')->with('success', 'Radio created successfully.');
     }
 
-    public function show(\App\Models\Radio $radio)
+    public function show(Radio $radio)
     {
         return view('radios.show', compact('radio'));
     }
 
-
-    public function edit(\App\Models\Radio $radio)
+    public function edit(Radio $radio)
     {
-        $regions = \App\Models\Region::orderBy('name')->get();
-        return view('radios.edit', compact('radio','regions'));
+        return view('radios.edit', compact('radio'));
     }
 
-    public function update(\Illuminate\Http\Request $request, \App\Models\Radio $radio)
+    public function update(Request $request, Radio $radio)
     {
-        $data = $request->validate([
-            'region_id' => 'required|exists:regions,id',
+        $request->validate([
+            'town_name' => 'required|string|exists:towns,name',
+            'frequency' => 'required|numeric',
+            'power' => 'nullable|numeric',
             'name' => 'required|string|max:255',
-            'frequency' => 'required|string|max:255',
+            'address' => 'nullable|string|max:255',
         ]);
-        $radio->update($data);
-        return redirect()->route('radios.index');
+
+        $radio->update($request->only(['town_name', 'frequency', 'power', 'name', 'address']));
+
+        return redirect()->route('radios.index')->with('success', 'Radio updated successfully.');
     }
 
-public function destroy(\App\Models\Radio $radio)
-{
-    $radio->delete();
-    return redirect()->route('radios.index');
-}
-
+    public function destroy(Radio $radio)
+    {
+        $radio->delete();
+        return redirect()->route('radios.index')->with('success', 'Radio deleted successfully.');
+    }
 }

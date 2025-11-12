@@ -1,21 +1,33 @@
+
 @extends('layouts.app')
 
 @section('content')
-<form method="post" action="{{ route('radios.store') }}">
-    @csrf
-    <input type="text" name="name" placeholder="Name" value="{{ old('name') }}">
-    @error('name')<div>{{ $message }}</div>@enderror
+    <h1>Új Rádióadó Létrehozása</h1>
 
-    <input type="text" name="frequency" placeholder="Frequency" value="{{ old('frequency') }}">
-    @error('frequency')<div>{{ $message }}</div>@enderror
+    <form action="{{ route('radios.store') }}" method="POST">
+        @csrf
+        <div>
+            <label>Név:</label>
+            <input type="text" name="name" value="{{ old('name') }}" required>
+        </div>
+        <div>
+            <label>Település neve:</label>
+            <input type="text" name="town_name" value="{{ old('town_name') }}" required>
+        </div>
+        <div>
+            <label>Frekvencia:</label>
+            <input type="number" step="0.01" name="frequency" value="{{ old('frequency') }}" required>
+        </div>
+        <div>
+            <label>Teljesítmény:</label>
+            <input type="number" step="0.01" name="power" value="{{ old('power') }}">
+        </div>
+        <div>
+            <label>Cím:</label>
+            <input type="text" name="address" value="{{ old('address') }}">
+        </div>
+        <button type="submit">Mentés</button>
+    </form>
 
-    <select name="region_id">
-        @foreach($regions as $reg)
-            <option value="{{ $reg->id }}" @selected(old('region_id') == $reg->id)>{{ $reg->name }}</option>
-        @endforeach
-    </select>
-    @error('region_id')<div>{{ $message }}</div>@enderror
-
-    <button type="submit">Save</button>
-</form>
+    <a href="{{ route('radios.index') }}">Vissza</a>
 @endsection

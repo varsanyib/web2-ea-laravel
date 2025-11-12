@@ -1,23 +1,34 @@
+
 @extends('layouts.app')
 
 @section('content')
-<form method="post" action="{{ route('radios.update',$radio) }}">
-    @csrf
-    @method('PUT')
+    <h1>Rádióadó szerkesztése</h1>
 
-    <input type="text" name="name" value="{{ old('name',$radio->name) }}">
-    @error('name')<div>{{ $message }}</div>@enderror
+    <form action="{{ route('radios.update', $radio) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div>
+            <label>Név:</label>
+            <input type="text" name="name" value="{{ old('name', $radio->name) }}" required>
+        </div>
+        <div>
+            <label>Település neve:</label>
+            <input type="text" name="town_name" value="{{ old('town_name', $radio->town_name) }}" required>
+        </div>
+        <div>
+            <label>Frekvencia:</label>
+            <input type="number" step="0.01" name="frequency" value="{{ old('frequency', $radio->frequency) }}" required>
+        </div>
+        <div>
+            <label>Teljesítmény:</label>
+            <input type="number" step="0.01" name="power" value="{{ old('power', $radio->power) }}">
+        </div>
+        <div>
+            <label>Cím:</label>
+            <input type="text" name="address" value="{{ old('address', $radio->address) }}">
+        </div>
+        <button type="submit">Frissítés</button>
+    </form>
 
-    <input type="text" name="frequency" value="{{ old('frequency',$radio->frequency) }}">
-    @error('frequency')<div>{{ $message }}</div>@enderror
-
-    <select name="region_id">
-        @foreach($regions as $reg)
-            <option value="{{ $reg->id }}" @selected(old('region_id',$radio->region_id)==$reg->id)>{{ $reg->name }}</option>
-        @endforeach
-    </select>
-    @error('region_id')<div>{{ $message }}</div>@enderror
-
-    <button type="submit">Update</button>
-</form>
+    <a href="{{ route('radios.index') }}">Vissza</a>
 @endsection
