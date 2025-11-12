@@ -19,9 +19,7 @@
         @include('partials.navbar')
     </header>
 
-    <main class="container">
-        @yield('content')
-    </main>
+	@yield('content')
 
     <footer class="footer-section text-center mt-5 text-muted">
         @include('partials.footer')
