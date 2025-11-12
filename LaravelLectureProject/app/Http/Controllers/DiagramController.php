@@ -9,6 +9,8 @@ class DiagramController extends Controller
 {
     public function index()
     {
+        $totalRadios = Radio::count();
+
         $data = DB::table('radios')
             ->join('towns', 'radios.town_name', '=', 'towns.name')
             ->select('towns.county_name', DB::raw('COUNT(radios.id) as radios_count'))
@@ -16,9 +18,11 @@ class DiagramController extends Controller
             ->orderBy('towns.county_name')
             ->get();
 
+        $latestRadio = Radio::latest()->first();
+
         $labels = $data->pluck('county_name');
         $values = $data->pluck('radios_count');
 
-        return view('diagram', compact('labels', 'values'));
+        return view('diagram', compact('totalRadios', 'latestRadio', 'labels', 'values'));
     }
 }

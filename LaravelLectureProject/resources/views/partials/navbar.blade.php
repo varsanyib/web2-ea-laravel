@@ -1,5 +1,5 @@
 <a href="{{ route('home') }}" class="site-logo">
-    <img src="{{ asset('img/logo.png') }}" alt="">
+    <img src="{{ asset('logo.png') }}" style="height: 25px;" alt="">
 </a>
 
 @guest
@@ -13,20 +13,19 @@
 
 <ul class="main-menu">
     <li><a href="{{ route('home') }}">Kezdőlap</a></li>
-    <li><a href="{{ route('contact') }}">Kapcsolat</a></li>
-    <li><a href="{{ route('diagram') }}">Diagram</a></li>
-
+    <li><a href="{{ route('diagram') }}">Adatok</a></li>
     @auth
-        <li><a href="{{ route('dashboard') }}">Kezelőpult</a></li>
+        <li><a href="{{ route('dashboard') }}">Fiók</a></li>
         <li><a href="{{ route('messages.index') }}">Üzenetek</a></li>
         @if(auth()->user()->role === 'admin')
             <li><a href="{{ route('admin.home') }}">Admin</a></li>
-            <li><a href="{{ route('radios.index') }}">Rádiók</a></li>
+            <li><a href="{{ route('radios.index') }}">Rádiók kezelése</a></li>
         @endif
+        <li><a href="{{ route('contact') }}">Kapcsolat</a></li>
         <li>
-            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="btn btn-link logout" style="padding: 0; border: none; background: none; cursor: pointer;">Kijelentkezés</button>
+                <button type="submit" class="btn btn-primary logout m-5" >Kijelentkezés</button>
             </form>
         </li>
     @endauth
