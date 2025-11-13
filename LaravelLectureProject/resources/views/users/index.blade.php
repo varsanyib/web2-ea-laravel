@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover align-middle">
-                            <thead class="table-dark">
+                            <thead class="table-dark" style="background-color: #08192d; color: white;">
                                 <tr>
                                     <th>Név</th>
                                     <th>Email</th>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card shadow-lg border-0">
-                <div class="card-header text-center bg-primary text-white">
+                <div class="card-header text-center text-white" style="background-color: #08192d">
                     <h4>Regisztráció</h4>
                 </div>
 
@@ -59,7 +59,7 @@
                             <a href="{{ route('login') }}" class="text-decoration-none small text-muted">
                                 Már van fiókja?
                             </a>
-                            <button type="submit" class="btn btn-primary px-4">
+                            <button type="submit" class="btn px-4" style="background-color: #08192d; color: white;">
                                 Regisztráció
                             </button>
                         </div>

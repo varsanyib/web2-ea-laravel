@@ -5,11 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
 
-            <!-- Üzenet státusz -->
             @if(session('status'))
                 <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-                    <i class="bi bi-check-circle-fill me-2"></i> <!-- Bootstrap ikon a siker jelzésére -->
-                    {{ session('status') == 'ok' ? 'Az üzeneted sikeresen elküldve!' : session('status') }}
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    {{ session('status') == 'ok' ? 'Az üzenete sikeresen elküldve!' : session('status') }}
                 </div>
             @endif
 
@@ -17,12 +16,11 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h3 class="card-title mb-4 text-center">Kapcsolatfelvétel</h3>
-                    <p class="text-center text-muted mb-4">Küldj nekünk üzenetet, és hamarosan válaszolunk!</p>
+                    <p class="text-center text-muted mb-4">Küldjön nekünk üzenetet, és hamarosan válaszolunk!</p>
 
                     <form method="post" action="{{ route('contact.store') }}">
                         @csrf
 
-                        <!-- Név -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Név</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" 
@@ -32,7 +30,6 @@
                             @enderror
                         </div>
 
-                        <!-- Email -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email cím</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" 
@@ -42,7 +39,6 @@
                             @enderror
                         </div>
 
-                        <!-- Tárgy -->
                         <div class="mb-3">
                             <label for="subject" class="form-label">Tárgy</label>
                             <input type="text" class="form-control @error('subject') is-invalid @enderror" 
@@ -52,7 +48,6 @@
                             @enderror
                         </div>
 
-                        <!-- Üzenet -->
                         <div class="mb-3">
                             <label for="body" class="form-label">Üzenet</label>
                             <textarea class="form-control @error('body') is-invalid @enderror" 
@@ -62,7 +57,6 @@
                             @enderror
                         </div>
 
-                        <!-- Küldés gomb -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">Küldés</button>
                         </div>

@@ -12,10 +12,13 @@
 @endguest
 
 <ul class="main-menu">
-    <li><a href="{{ route('home') }}">Kezdőlap</a></li>
-    <li><a href="{{ route('diagram') }}">Adatok</a></li>
+    @guest
+        <li><a href="{{ route('home') }}">Kezdőlap</a></li>
+        <li><a href="{{ route('diagram') }}">Adatok</a></li>
+    @endguest
     @auth
-        <li><a href="{{ route('dashboard') }}">Profil</a></li>
+        <li><a href="{{ route('dashboard') }}">Kezdőlap</a></li>
+        <li><a href="{{ route('diagram') }}">Adatok</a></li>
         <li><a href="{{ route('messages.index') }}">Üzenetek</a></li>
         <li><a href="{{ route('radios.index') }}">Rádiók</a></li>
         @if(auth()->user()->role === 'admin')
