@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
-	<meta name="description" content="SolMusic HTML Template">
+	<meta name="description" content="Magyarországi rádióadók gyűjtőoldala">
 	<meta name="keywords" content="music, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="{{ asset('img/favicon.ico') }}" rel="shortcut icon"/>
